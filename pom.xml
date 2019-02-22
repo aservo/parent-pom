@@ -10,10 +10,37 @@
     <version>0.0.1</version>
     <packaging>pom</packaging>
 
+    <name>ASERVO Parent POM</name>
+    <description>Maven Parent POM for Open Source Software by ASERVO.</description>
+    <url>https://github.com/aservo/parent-pom</url>
+
     <organization>
         <name>ASERVO Software GmbH</name>
         <url>https://www.aservo.com</url>
     </organization>
+
+    <licenses>
+        <license>
+            <name>BSD 3-Clause License</name>
+            <url>https://opensource.org/licenses/BSD-3-Clause</url>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:git@github.com:aservo/parent-pom.git</connection>
+        <developerConnection>scm:git:git@github.com:aservo/parent-pom.git</developerConnection>
+        <url>https://github.com/aservo/parent-pom</url>
+        <tag>v@{project.version}</tag>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>Patrick Hobusch</name>
+            <email>phobusch@aservo.com</email>
+            <organization>ASERVO Software GmbH</organization>
+            <organizationUrl>https://www.aservo.com</organizationUrl>
+        </developer>
+    </developers>
 
     <distributionManagement>
         <snapshotRepository>
