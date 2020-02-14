@@ -7,7 +7,7 @@
 
     <groupId>de.aservo</groupId>
     <artifactId>parent-pom</artifactId>
-    <version>0.0.3</version>
+    <version>0.0.4</version>
     <packaging>pom</packaging>
 
     <name>ASERVO Parent POM</name>
@@ -53,8 +53,12 @@
         <sonar.projectKey>aservo_${project.artifactId}</sonar.projectKey>
         <sonar.organization>800c9135c81800959e51375f6594c91a1f757be9bbbc14d311783a4f75c501ec7807da061e787a9ea89433eb1cf2d6088b664332abd6a411ca5b44e811e97a23</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        <!-- support java code coverage -->
-        <jacoco.version>0.8.5</jacoco.version>
+        <!-- default plugin versions -->
+        <gpg.plugin.version>1.6</gpg.plugin.version>
+        <deploy.plugin.version>2.8.2</deploy.plugin.version>
+        <nexus-staging.plugin.version>1.6.8</nexus-staging.plugin.version>
+        <attach-resources.plugin.version>3.0.1</attach-resources.plugin.version>
+        <jacoco.plugin.version>0.8.5</jacoco.plugin.version>
     </properties>
 
     <distributionManagement>
@@ -71,30 +75,6 @@
         </repository>
     </distributionManagement>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>${jacoco.version}</version>
-                <executions>
-                    <execution>
-                        <id>default-prepare-agent</id>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>default-report</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 
     <profiles>
         <profile>
@@ -107,7 +87,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.6</version>
+                        <version>${gpg.plugin.version}</version>
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>
@@ -127,7 +107,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-deploy-plugin</artifactId>
-                        <version>2.8.2</version>
+                        <version>${deploy.plugin.version}</version>
                         <configuration>
                             <!-- Deployment is already handled by nexus-staging-maven-plugin -->
                             <skip>true</skip>
@@ -137,7 +117,7 @@
                     <plugin>
                         <groupId>org.sonatype.plugins</groupId>
                         <artifactId>nexus-staging-maven-plugin</artifactId>
-                        <version>1.6.8</version>
+                        <version>${nexus-staging.plugin.version}</version>
                         <extensions>true</extensions>
                         <executions>
                             <execution>
@@ -168,7 +148,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
-                        <version>3.0.1</version>
+                        <version>${attach-resources.plugin.version}</version>
                         <executions>
                             <execution>
                                 <id>attach-sources</id>
@@ -193,13 +173,44 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>3.0.1</version>
+                        <version>${attach-resources.plugin.version}</version>
                         <executions>
                             <execution>
                                 <id>attach-javadocs</id>
                                 <phase>install</phase>
                                 <goals>
                                     <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>jacoco</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                        <version>${jacoco.plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>default-prepare-agent</id>
+                                <goals>
+                                    <goal>prepare-agent</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>default-report</id>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>report</goal>
                                 </goals>
                             </execution>
                         </executions>
