@@ -7,7 +7,7 @@
 
     <groupId>de.aservo</groupId>
     <artifactId>parent-pom</artifactId>
-    <version>0.0.4</version>
+    <version>0.0.5</version>
     <packaging>pom</packaging>
 
     <name>ASERVO Parent POM</name>
@@ -100,7 +100,11 @@
                         <configuration>
                             <keyname>${gpg.keyname}</keyname>
                             <passphrase>${gpg.passphrase}</passphrase>
-                            <executable>${gpg.executable}</executable>
+			    <executable>${gpg.executable}</executable>
+                            <gpgArguments>
+                                <arg>--pinentry-mode</arg>
+                                <arg>loopback</arg>
+                            </gpgArguments>
                         </configuration>
                     </plugin>
 
