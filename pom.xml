@@ -152,6 +152,11 @@
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
+            <properties>
+                <gpg.exe>gpg</gpg.exe>
+                <gpg.key>${env.GPG_KEY_NAME}</gpg.key>
+                <gpg.psw>${env.GPG_PASSPHRASE}</gpg.psw>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -168,9 +173,9 @@
                             </execution>
                         </executions>
                         <configuration>
-                            <keyname>${gpg.keyname}</keyname>
-                            <passphrase>${gpg.passphrase}</passphrase>
-                            <executable>${gpg.executable}</executable>
+                            <keyname>${gpg.key}</keyname>
+                            <passphrase>${gpg.psw}</passphrase>
+                            <executable>${gpg.exe}</executable>
                             <gpgArguments>
                                 <arg>--pinentry-mode</arg>
                                 <arg>loopback</arg>
