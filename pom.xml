@@ -7,7 +7,7 @@
 
     <groupId>de.aservo</groupId>
     <artifactId>parent-pom</artifactId>
-    <version>0.0.9</version>
+    <version>0.0.10</version>
     <packaging>pom</packaging>
 
     <name>ASERVO Parent POM</name>
@@ -111,7 +111,7 @@
             <repositories>
                 <repository>
                     <id>atlassian-public</id>
-                    <url>https://packages.atlassian.com/maven/repository/public</url>
+                    <url>https://packages.atlassian.com/mvn/maven-external</url>
                     <snapshots>
                         <enabled>true</enabled>
                         <updatePolicy>never</updatePolicy>
@@ -139,7 +139,7 @@
             <pluginRepositories>
                 <pluginRepository>
                     <id>atlassian-public</id>
-                    <url>https://packages.atlassian.com/maven/repository/public</url>
+                    <url>https://packages.atlassian.com/mvn/maven-external</url>
                     <snapshots>
                         <enabled>true</enabled>
                         <updatePolicy>never</updatePolicy>
