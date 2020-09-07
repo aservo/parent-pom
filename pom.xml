@@ -7,7 +7,7 @@
 
     <groupId>de.aservo</groupId>
     <artifactId>parent-pom</artifactId>
-    <version>0.0.10</version>
+    <version>0.0.11</version>
     <packaging>pom</packaging>
 
     <name>ASERVO Parent POM</name>
@@ -113,26 +113,24 @@
                     <id>atlassian-public</id>
                     <url>https://packages.atlassian.com/mvn/maven-external</url>
                     <snapshots>
-                        <enabled>true</enabled>
-                        <updatePolicy>never</updatePolicy>
-                        <checksumPolicy>warn</checksumPolicy>
+                        <enabled>false</enabled>
                     </snapshots>
                     <releases>
                         <enabled>true</enabled>
+                        <updatePolicy>never</updatePolicy>
                         <checksumPolicy>warn</checksumPolicy>
                     </releases>
                 </repository>
                 <repository>
-                    <id>sonatype-oss</id>
-                    <url>https://oss.sonatype.org/content/groups/public</url>
+                    <id>sonatype-oss-snapshot</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
                     <snapshots>
                         <enabled>true</enabled>
-                        <updatePolicy>never</updatePolicy>
+                        <updatePolicy>always</updatePolicy>
                         <checksumPolicy>warn</checksumPolicy>
                     </snapshots>
                     <releases>
-                        <enabled>true</enabled>
-                        <checksumPolicy>warn</checksumPolicy>
+                        <enabled>false</enabled>
                     </releases>
                 </repository>
             </repositories>
@@ -141,26 +139,24 @@
                     <id>atlassian-public</id>
                     <url>https://packages.atlassian.com/mvn/maven-external</url>
                     <snapshots>
-                        <enabled>true</enabled>
-                        <updatePolicy>never</updatePolicy>
-                        <checksumPolicy>warn</checksumPolicy>
+                        <enabled>false</enabled>
                     </snapshots>
                     <releases>
                         <enabled>true</enabled>
+                        <updatePolicy>never</updatePolicy>
                         <checksumPolicy>warn</checksumPolicy>
                     </releases>
                 </pluginRepository>
                 <pluginRepository>
-                    <id>sonatype-oss</id>
-                    <url>https://oss.sonatype.org/content/groups/public</url>
+                    <id>sonatype-oss-snapshot</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
                     <snapshots>
                         <enabled>true</enabled>
-                        <updatePolicy>never</updatePolicy>
+                        <updatePolicy>always</updatePolicy>
                         <checksumPolicy>warn</checksumPolicy>
                     </snapshots>
                     <releases>
-                        <enabled>true</enabled>
-                        <checksumPolicy>warn</checksumPolicy>
+                        <enabled>false</enabled>
                     </releases>
                 </pluginRepository>
             </pluginRepositories>
