@@ -7,7 +7,7 @@
 
     <groupId>de.aservo</groupId>
     <artifactId>parent-pom</artifactId>
-    <version>0.0.11</version>
+    <version>0.0.13</version>
     <packaging>pom</packaging>
 
     <name>ASERVO Parent POM</name>
@@ -314,14 +314,20 @@
                         <version>${jacoco.plugin.version}</version>
                         <executions>
                             <execution>
-                                <id>pre-test</id>
+                                <id>default-instrument</id>
                                 <goals>
-                                    <goal>prepare-agent</goal>
+                                    <goal>instrument</goal>
                                 </goals>
                             </execution>
                             <execution>
-                                <id>post-test</id>
-                                <phase>test</phase>
+                                <id>default-restore-instrumented-classes</id>
+                                <goals>
+                                    <goal>restore-instrumented-classes</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>default-report</id>
+                                <phase>prepare-package</phase>
                                 <goals>
                                     <goal>report</goal>
                                 </goals>
