@@ -65,6 +65,7 @@
         <javax-ws-rs-api.version>2.0</javax-ws-rs-api.version>
         <nexus-staging.plugin.version>1.6.8</nexus-staging.plugin.version>
         <openapi-generator-maven-plugin.version>4.3.0</openapi-generator-maven-plugin.version>
+        <sonar.plugin.version>3.9.1.2184</sonar.plugin.version>
         <surefire.plugin.version>2.22.2</surefire.plugin.version>
         <swagger.version>2.1.1</swagger.version>
     </properties>
@@ -162,6 +163,19 @@
                     </releases>
                 </pluginRepository>
             </pluginRepositories>
+        </profile>
+
+        <profile>
+            <id>analyzing</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.sonarsource.scanner.maven</groupId>
+                        <artifactId>sonar-maven-plugin</artifactId>
+                        <version>${sonar.plugin.version}</version>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
 
         <profile>
