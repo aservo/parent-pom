@@ -16,7 +16,7 @@
 
     <organization>
         <name>ASERVO Software GmbH</name>
-        <url>https://www.aservo.com</url>
+        <url>https://aservo.com</url>
     </organization>
 
     <licenses>
@@ -28,18 +28,23 @@
     </licenses>
 
     <scm>
-        <connection>scm:git:git@github.com:aservo/parent-pom.git</connection>
+        <connection>scm:git:https://github.com/aservo/parent-pom.git</connection>
         <developerConnection>scm:git:git@github.com:aservo/parent-pom.git</developerConnection>
         <url>https://github.com/aservo/parent-pom</url>
         <tag>v@{project.version}</tag>
     </scm>
+
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/aservo/parent-pom/issues</url>
+    </issueManagement>
 
     <developers>
         <developer>
             <name>Patrick Hobusch</name>
             <email>phobusch@aservo.com</email>
             <organization>ASERVO Software GmbH</organization>
-            <organizationUrl>https://www.aservo.com</organizationUrl>
+            <organizationUrl>https://aservo.com</organizationUrl>
         </developer>
     </developers>
 
