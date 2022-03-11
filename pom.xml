@@ -55,17 +55,8 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <!-- Atlassia SDK settings -->
-        <downloadSources>true</downloadSources>
-        <downloadJavadocs>true</downloadJavadocs>
+        <!-- defaults for project specific properties -->
         <allow.google.tracking>false</allow.google.tracking>
-        <skipAllPrompts>true</skipAllPrompts>
-        <!-- facilitate sonarcloud integration -->
-        <sonar.projectKey>aservo_${project.artifactId}</sonar.projectKey>
-        <sonar.organization>
-            800c9135c81800959e51375f6594c91a1f757be9bbbc14d311783a4f75c501ec7807da061e787a9ea89433eb1cf2d6088b664332abd6a411ca5b44e811e97a23
-        </sonar.organization>
-        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <!-- default plugin versions -->
         <attach-resources.plugin.version>3.0.1</attach-resources.plugin.version>
         <deploy.plugin.version>2.8.2</deploy.plugin.version>
