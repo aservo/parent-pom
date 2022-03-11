@@ -58,17 +58,20 @@
         <!-- defaults for project specific properties -->
         <allow.google.tracking>false</allow.google.tracking>
         <!-- default plugin versions -->
-        <attach-resources.plugin.version>3.0.1</attach-resources.plugin.version>
         <dependency.plugin.version>3.2.0</dependency.plugin.version>
         <deploy.plugin.version>3.0.0-M2</deploy.plugin.version>
+        <exec.plugin.version>3.0.0</exec.plugin.version>
         <failsafe.plugin.version>3.0.0-M5</failsafe.plugin.version>
         <gpg.plugin.version>3.0.1</gpg.plugin.version>
+        <help.plugin.version>3.2.0</help.plugin.version>
         <jacoco.plugin.version>0.8.7</jacoco.plugin.version>
         <jar.plugin.version>3.2.2</jar.plugin.version>
+        <javadoc.plugin.version>3.3.1</javadoc.plugin.version>
         <javax-ws-rs-api.version>2.0</javax-ws-rs-api.version>
         <nexus-staging.plugin.version>1.6.8</nexus-staging.plugin.version>
         <openapi-generator-maven-plugin.version>4.3.0</openapi-generator-maven-plugin.version>
         <sonar.plugin.version>3.9.1.2184</sonar.plugin.version>
+        <source.plugin.version>3.2.1</source.plugin.version>
         <surefire.plugin.version>3.0.0-M5</surefire.plugin.version>
         <swagger.version>2.1.1</swagger.version>
     </properties>
@@ -417,7 +420,7 @@
         </profile>
 
         <profile>
-            <id>sources</id>
+            <id>defaults</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
@@ -425,8 +428,13 @@
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-help-plugin</artifactId>
+                        <version>${help.plugin.version}</version>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
-                        <version>${attach-resources.plugin.version}</version>
+                        <version>${source.plugin.version}</version>
                         <executions>
                             <execution>
                                 <id>attach-sources</id>
@@ -437,30 +445,34 @@
                             </execution>
                         </executions>
                     </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <profile>
-            <id>javadoc</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <build>
-                <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>${attach-resources.plugin.version}</version>
+                        <version>${javadoc.plugin.version}</version>
                         <executions>
                             <execution>
-                                <id>attach-javadocs</id>
+                                <id>attach-javadoc</id>
                                 <phase>install</phase>
                                 <goals>
                                     <goal>jar</goal>
                                 </goals>
                             </execution>
                         </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>${exec.plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>java</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <mainClass>${app.mainClass}</mainClass>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>
