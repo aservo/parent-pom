@@ -60,7 +60,7 @@
         <!-- default plugin versions -->
         <attach-resources.plugin.version>3.0.1</attach-resources.plugin.version>
         <deploy.plugin.version>2.8.2</deploy.plugin.version>
-        <gpg.plugin.version>1.6</gpg.plugin.version>
+        <gpg.plugin.version>3.0.1</gpg.plugin.version>
         <jacoco.plugin.version>0.8.5</jacoco.plugin.version>
         <javax-ws-rs-api.version>2.0</javax-ws-rs-api.version>
         <nexus-staging.plugin.version>1.6.8</nexus-staging.plugin.version>
@@ -179,15 +179,7 @@
         </profile>
 
         <profile>
-            <id>release</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <gpg.exe>gpg</gpg.exe>
-                <gpg.key>${env.GPG_KEY_NAME}</gpg.key>
-                <gpg.psw>${env.GPG_PASSPHRASE}</gpg.psw>
-            </properties>
+            <id>signing</id>
             <build>
                 <plugins>
                     <plugin>
@@ -196,7 +188,6 @@
                         <version>${gpg.plugin.version}</version>
                         <executions>
                             <execution>
-                                <id>sign-artifacts</id>
                                 <phase>deploy</phase>
                                 <goals>
                                     <goal>sign</goal>
@@ -204,15 +195,27 @@
                             </execution>
                         </executions>
                         <configuration>
-                            <keyname>${gpg.key}</keyname>
-                            <passphrase>${gpg.psw}</passphrase>
-                            <executable>${gpg.exe}</executable>
+                            <keyname>${gpg.keyname}</keyname>
+                            <passphrase>${gpg.passphrase}</passphrase>
+                            <executable>${gpg.executable}</executable>
                             <gpgArguments>
+                                <!-- This is necessary for gpg to not try to use the pinentry programs -->
                                 <arg>--pinentry-mode</arg>
                                 <arg>loopback</arg>
                             </gpgArguments>
                         </configuration>
                     </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>release</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
 
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>

@@ -14,14 +14,11 @@
 
     <profiles>
         <profile>
-            <id>sign-env</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
+            <id>signing</id>
             <properties>
-                <gpg.executable>gpg</gpg.executable>
                 <gpg.keyname>${env.GPG_KEY_NAME}</gpg.keyname>
                 <gpg.passphrase>${env.GPG_PASSPHRASE}</gpg.passphrase>
+                <gpg.executable>gpg</gpg.executable>
             </properties>
         </profile>
     </profiles>
