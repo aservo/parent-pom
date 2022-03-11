@@ -59,10 +59,12 @@
         <allow.google.tracking>false</allow.google.tracking>
         <!-- default plugin versions -->
         <attach-resources.plugin.version>3.0.1</attach-resources.plugin.version>
+        <dependency.plugin.version>3.2.0</dependency.plugin.version>
         <deploy.plugin.version>3.0.0-M2</deploy.plugin.version>
         <failsafe.plugin.version>3.0.0-M5</failsafe.plugin.version>
         <gpg.plugin.version>3.0.1</gpg.plugin.version>
         <jacoco.plugin.version>0.8.7</jacoco.plugin.version>
+        <jar.plugin.version>3.2.2</jar.plugin.version>
         <javax-ws-rs-api.version>2.0</javax-ws-rs-api.version>
         <nexus-staging.plugin.version>1.6.8</nexus-staging.plugin.version>
         <openapi-generator-maven-plugin.version>4.3.0</openapi-generator-maven-plugin.version>
@@ -236,6 +238,66 @@
                             <serverId>ossrh</serverId>
                             <nexusUrl>${nexus.host.url}</nexusUrl>
                             <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>packaging</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <version>${dependency.plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>copy</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>copy</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>${project.groupId}</groupId>
+                                            <artifactId>${project.artifactId}</artifactId>
+                                            <version>${project.version}</version>
+                                            <outputDirectory>${project.build.directory}/dist</outputDirectory>
+                                            <overWrite>true</overWrite>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>copy-dependencies</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>copy-dependencies</goal>
+                                </goals>
+                                <configuration>
+                                    <includeScope>runtime</includeScope>
+                                    <outputDirectory>${project.build.directory}/dist</outputDirectory>
+                                    <overWriteReleases>false</overWriteReleases>
+                                    <overWriteSnapshots>true</overWriteSnapshots>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jar-plugin</artifactId>
+                        <version>${jar.plugin.version}</version>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <mainClass>${app.mainClass}</mainClass>
+                                    <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                                    <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                                </manifest>
+                            </archive>
                         </configuration>
                     </plugin>
                 </plugins>
