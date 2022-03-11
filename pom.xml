@@ -67,7 +67,6 @@
         <jacoco.plugin.version>0.8.7</jacoco.plugin.version>
         <jar.plugin.version>3.2.2</jar.plugin.version>
         <javadoc.plugin.version>3.3.1</javadoc.plugin.version>
-        <javax-ws-rs-api.version>2.0</javax-ws-rs-api.version>
         <nexus-staging.plugin.version>1.6.8</nexus-staging.plugin.version>
         <openapi-generator.plugin.version>4.3.0</openapi-generator.plugin.version>
         <sonar.plugin.version>3.9.1.2184</sonar.plugin.version>
@@ -75,22 +74,6 @@
         <surefire.plugin.version>3.0.0-M5</surefire.plugin.version>
         <swagger.plugin.version>2.1.1</swagger.plugin.version>
     </properties>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>io.swagger.core.v3</groupId>
-                <artifactId>swagger-annotations</artifactId>
-                <version>${swagger.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>javax.ws.rs</groupId>
-                <artifactId>javax.ws.rs-api</artifactId>
-                <version>${javax-ws-rs-api.version}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <profiles>
 
