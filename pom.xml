@@ -102,14 +102,15 @@
     <profiles>
 
         <profile>
-            <id>defaultProfile</id>
+            <id>resolving</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <repositories>
                 <repository>
                     <id>atlassian-public</id>
-                    <url>https://packages.atlassian.com/mvn/maven-external</url>
+                    <name>Atlassian</name>
+                    <url>https://maven.atlassian.com/content/groups/public/</url>
                     <snapshots>
                         <enabled>false</enabled>
                     </snapshots>
@@ -121,6 +122,7 @@
                 </repository>
                 <repository>
                     <id>sonatype-oss-snapshot</id>
+                    <name>OSS Sonatype Snapshots</name>
                     <url>https://oss.sonatype.org/content/repositories/snapshots</url>
                     <snapshots>
                         <enabled>true</enabled>
@@ -135,7 +137,8 @@
             <pluginRepositories>
                 <pluginRepository>
                     <id>atlassian-public</id>
-                    <url>https://packages.atlassian.com/mvn/maven-external</url>
+                    <name>Atlassian</name>
+                    <url>https://maven.atlassian.com/content/groups/public/</url>
                     <snapshots>
                         <enabled>false</enabled>
                     </snapshots>
@@ -147,6 +150,7 @@
                 </pluginRepository>
                 <pluginRepository>
                     <id>sonatype-oss-snapshot</id>
+                    <name>OSS Sonatype Snapshots</name>
                     <url>https://oss.sonatype.org/content/repositories/snapshots</url>
                     <snapshots>
                         <enabled>true</enabled>
