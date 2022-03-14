@@ -1,12 +1,8 @@
 <settings>
+
     <servers>
         <server>
-            <id>sonatype-nexus-snapshots</id>
-            <username>${env.OSSRH_USERNAME}</username>
-            <password>${env.OSSRH_PASSWORD}</password>
-        </server>
-        <server>
-            <id>sonatype-nexus-staging</id>
+            <id>ossrh</id>
             <username>${env.OSSRH_USERNAME}</username>
             <password>${env.OSSRH_PASSWORD}</password>
         </server>
@@ -21,5 +17,14 @@
                 <gpg.executable>gpg</gpg.executable>
             </properties>
         </profile>
+        <profile>
+            <id>deploying</id>
+            <properties>
+                <nexus.host.url>https://oss.sonatype.org/</nexus.host.url>
+                <nexus.snapshot.url>https://oss.sonatype.org/content/repositories/snapshots</nexus.snapshot.url>
+                <nexus.release.url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</nexus.release.url>
+            </properties>
+        </profile>
     </profiles>
+
 </settings>
