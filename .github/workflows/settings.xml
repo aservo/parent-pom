@@ -1,12 +1,8 @@
 <settings>
+
     <servers>
         <server>
-            <id>sonatype-nexus-snapshots</id>
-            <username>${env.OSSRH_USERNAME}</username>
-            <password>${env.OSSRH_PASSWORD}</password>
-        </server>
-        <server>
-            <id>sonatype-nexus-staging</id>
+            <id>ossrh</id>
             <username>${env.OSSRH_USERNAME}</username>
             <password>${env.OSSRH_PASSWORD}</password>
         </server>
@@ -14,15 +10,21 @@
 
     <profiles>
         <profile>
-            <id>sign-env</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
+            <id>signing</id>
             <properties>
-                <gpg.executable>gpg</gpg.executable>
                 <gpg.keyname>${env.GPG_KEY_NAME}</gpg.keyname>
                 <gpg.passphrase>${env.GPG_PASSPHRASE}</gpg.passphrase>
+                <gpg.executable>gpg</gpg.executable>
+            </properties>
+        </profile>
+        <profile>
+            <id>deploying</id>
+            <properties>
+                <nexus.host.url>https://oss.sonatype.org/</nexus.host.url>
+                <nexus.snapshot.url>https://oss.sonatype.org/content/repositories/snapshots</nexus.snapshot.url>
+                <nexus.release.url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</nexus.release.url>
             </properties>
         </profile>
     </profiles>
+
 </settings>

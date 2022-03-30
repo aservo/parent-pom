@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.aservo</groupId>
     <artifactId>parent-pom</artifactId>
-    <version>0.0.13</version>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>ASERVO Parent POM</name>
@@ -16,7 +16,7 @@
 
     <organization>
         <name>ASERVO Software GmbH</name>
-        <url>https://www.aservo.com</url>
+        <url>https://aservo.com</url>
     </organization>
 
     <licenses>
@@ -28,90 +28,65 @@
     </licenses>
 
     <scm>
-        <connection>scm:git:git@github.com:aservo/parent-pom.git</connection>
+        <connection>scm:git:https://github.com/aservo/parent-pom.git</connection>
         <developerConnection>scm:git:git@github.com:aservo/parent-pom.git</developerConnection>
         <url>https://github.com/aservo/parent-pom</url>
         <tag>v@{project.version}</tag>
     </scm>
+
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/aservo/parent-pom/issues</url>
+    </issueManagement>
 
     <developers>
         <developer>
             <name>Patrick Hobusch</name>
             <email>phobusch@aservo.com</email>
             <organization>ASERVO Software GmbH</organization>
-            <organizationUrl>https://www.aservo.com</organizationUrl>
+            <organizationUrl>https://aservo.com</organizationUrl>
         </developer>
     </developers>
 
     <properties>
         <!-- default properties -->
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <java.version>11</java.version>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <!-- Atlassia SDK settings -->
-        <downloadSources>true</downloadSources>
-        <downloadJavadocs>true</downloadJavadocs>
+        <!-- defaults for project specific properties -->
         <allow.google.tracking>false</allow.google.tracking>
-        <skipAllPrompts>true</skipAllPrompts>
-        <!-- facilitate sonarcloud integration -->
-        <sonar.projectKey>aservo_${project.artifactId}</sonar.projectKey>
-        <sonar.organization>
-            800c9135c81800959e51375f6594c91a1f757be9bbbc14d311783a4f75c501ec7807da061e787a9ea89433eb1cf2d6088b664332abd6a411ca5b44e811e97a23
-        </sonar.organization>
-        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <!-- default plugin versions -->
-        <attach-resources.plugin.version>3.0.1</attach-resources.plugin.version>
-        <deploy.plugin.version>2.8.2</deploy.plugin.version>
-        <gpg.plugin.version>1.6</gpg.plugin.version>
-        <jacoco.plugin.version>0.8.5</jacoco.plugin.version>
-        <javax-ws-rs-api.version>2.0</javax-ws-rs-api.version>
+        <dependency.plugin.version>3.2.0</dependency.plugin.version>
+        <deploy.plugin.version>3.0.0-M2</deploy.plugin.version>
+        <exec.plugin.version>3.0.0</exec.plugin.version>
+        <failsafe.plugin.version>3.0.0-M5</failsafe.plugin.version>
+        <gpg.plugin.version>3.0.1</gpg.plugin.version>
+        <help.plugin.version>3.2.0</help.plugin.version>
+        <jacoco.plugin.version>0.8.7</jacoco.plugin.version>
+        <jar.plugin.version>3.2.2</jar.plugin.version>
+        <javadoc.plugin.version>3.3.1</javadoc.plugin.version>
         <nexus-staging.plugin.version>1.6.8</nexus-staging.plugin.version>
-        <openapi-generator-maven-plugin.version>4.3.0</openapi-generator-maven-plugin.version>
-        <surefire.plugin.version>2.22.2</surefire.plugin.version>
-        <swagger.version>2.1.1</swagger.version>
+        <openapi-generator.plugin.version>4.3.0</openapi-generator.plugin.version>
+        <sonar.plugin.version>3.9.1.2184</sonar.plugin.version>
+        <source.plugin.version>3.2.1</source.plugin.version>
+        <surefire.plugin.version>3.0.0-M5</surefire.plugin.version>
+        <swagger.plugin.version>2.1.1</swagger.plugin.version>
     </properties>
 
-    <distributionManagement>
-        <snapshotRepository>
-            <id>sonatype-nexus-snapshots</id>
-            <name>Sonatype Nexus snapshot repository</name>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-
-        <repository>
-            <id>sonatype-nexus-staging</id>
-            <name>Sonatype Nexus release staging repository</name>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>io.swagger.core.v3</groupId>
-                <artifactId>swagger-annotations</artifactId>
-                <version>${swagger.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>javax.ws.rs</groupId>
-                <artifactId>javax.ws.rs-api</artifactId>
-                <version>${javax-ws-rs-api.version}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
     <profiles>
+
         <profile>
-            <id>defaultProfile</id>
+            <id>resolving</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <repositories>
                 <repository>
                     <id>atlassian-public</id>
-                    <url>https://packages.atlassian.com/mvn/maven-external</url>
+                    <name>Atlassian</name>
+                    <url>https://maven.atlassian.com/content/groups/public/</url>
                     <snapshots>
                         <enabled>false</enabled>
                     </snapshots>
@@ -123,6 +98,7 @@
                 </repository>
                 <repository>
                     <id>sonatype-oss-snapshot</id>
+                    <name>OSS Sonatype Snapshots</name>
                     <url>https://oss.sonatype.org/content/repositories/snapshots</url>
                     <snapshots>
                         <enabled>true</enabled>
@@ -137,7 +113,8 @@
             <pluginRepositories>
                 <pluginRepository>
                     <id>atlassian-public</id>
-                    <url>https://packages.atlassian.com/mvn/maven-external</url>
+                    <name>Atlassian</name>
+                    <url>https://maven.atlassian.com/content/groups/public/</url>
                     <snapshots>
                         <enabled>false</enabled>
                     </snapshots>
@@ -149,6 +126,7 @@
                 </pluginRepository>
                 <pluginRepository>
                     <id>sonatype-oss-snapshot</id>
+                    <name>OSS Sonatype Snapshots</name>
                     <url>https://oss.sonatype.org/content/repositories/snapshots</url>
                     <snapshots>
                         <enabled>true</enabled>
@@ -163,15 +141,20 @@
         </profile>
 
         <profile>
-            <id>release</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <gpg.exe>gpg</gpg.exe>
-                <gpg.key>${env.GPG_KEY_NAME}</gpg.key>
-                <gpg.psw>${env.GPG_PASSPHRASE}</gpg.psw>
-            </properties>
+            <id>analyzing</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.sonarsource.scanner.maven</groupId>
+                        <artifactId>sonar-maven-plugin</artifactId>
+                        <version>${sonar.plugin.version}</version>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>signing</id>
             <build>
                 <plugins>
                     <plugin>
@@ -180,7 +163,6 @@
                         <version>${gpg.plugin.version}</version>
                         <executions>
                             <execution>
-                                <id>sign-artifacts</id>
                                 <phase>deploy</phase>
                                 <goals>
                                     <goal>sign</goal>
@@ -188,16 +170,34 @@
                             </execution>
                         </executions>
                         <configuration>
-                            <keyname>${gpg.key}</keyname>
-                            <passphrase>${gpg.psw}</passphrase>
-                            <executable>${gpg.exe}</executable>
+                            <keyname>${gpg.keyname}</keyname>
+                            <passphrase>${gpg.passphrase}</passphrase>
+                            <executable>${gpg.executable}</executable>
                             <gpgArguments>
+                                <!-- This is necessary for gpg to not try to use the pinentry programs -->
                                 <arg>--pinentry-mode</arg>
                                 <arg>loopback</arg>
                             </gpgArguments>
                         </configuration>
                     </plugin>
+                </plugins>
+            </build>
+        </profile>
 
+        <profile>
+            <id>deploying</id>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>ossrh</id>
+                    <url>${nexus.snapshot.url}</url>
+                </snapshotRepository>
+                <repository>
+                    <id>ossrh</id>
+                    <url>${nexus.release.url}</url>
+                </repository>
+            </distributionManagement>
+            <build>
+                <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-deploy-plugin</artifactId>
@@ -207,7 +207,6 @@
                             <skip>true</skip>
                         </configuration>
                     </plugin>
-
                     <plugin>
                         <groupId>org.sonatype.plugins</groupId>
                         <artifactId>nexus-staging-maven-plugin</artifactId>
@@ -215,7 +214,6 @@
                         <extensions>true</extensions>
                         <executions>
                             <execution>
-                                <id>default-deploy</id>
                                 <phase>deploy</phase>
                                 <goals>
                                     <goal>deploy</goal>
@@ -223,8 +221,8 @@
                             </execution>
                         </executions>
                         <configuration>
-                            <serverId>sonatype-nexus-staging</serverId>
-                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <serverId>ossrh</serverId>
+                            <nexusUrl>${nexus.host.url}</nexusUrl>
                             <autoReleaseAfterClose>true</autoReleaseAfterClose>
                         </configuration>
                     </plugin>
@@ -233,7 +231,67 @@
         </profile>
 
         <profile>
-            <id>surefire</id>
+            <id>packaging</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <version>${dependency.plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>copy</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>copy</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>${project.groupId}</groupId>
+                                            <artifactId>${project.artifactId}</artifactId>
+                                            <version>${project.version}</version>
+                                            <outputDirectory>${project.build.directory}/dist</outputDirectory>
+                                            <overWrite>true</overWrite>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>copy-dependencies</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>copy-dependencies</goal>
+                                </goals>
+                                <configuration>
+                                    <includeScope>runtime</includeScope>
+                                    <outputDirectory>${project.build.directory}/dist</outputDirectory>
+                                    <overWriteReleases>false</overWriteReleases>
+                                    <overWriteSnapshots>true</overWriteSnapshots>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jar-plugin</artifactId>
+                        <version>${jar.plugin.version}</version>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <mainClass>${app.mainClass}</mainClass>
+                                    <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                                    <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                                </manifest>
+                            </archive>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>testing</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
@@ -243,16 +301,109 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>${surefire.plugin.version}</version>
-                        <configuration>
-                            <skipTests>${skipUnitTests}</skipTests>
-                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                        <version>${jacoco.plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>before-unit-tests</id>
+                                <goals>
+                                    <goal>prepare-agent</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>after-unit-tests</id>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>report</goal>
+                                </goals>
+                            </execution>
+                        </executions>
                     </plugin>
                 </plugins>
             </build>
         </profile>
 
         <profile>
-            <id>sources</id>
+            <id>testing-it</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>${surefire.plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>test</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <excludes>
+                                <exclude>**/it/*</exclude>
+                            </excludes>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>${failsafe.plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <includes>
+                                <include>**/it/*</include>
+                            </includes>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                        <version>${jacoco.plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>before-unit-tests</id>
+                                <goals>
+                                    <goal>prepare-agent</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>after-unit-tests</id>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>report</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>before-integration-tests</id>
+                                <goals>
+                                    <goal>prepare-agent-integration</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>after-integration-tests</id>
+                                <phase>integration-test</phase>
+                                <goals>
+                                    <goal>report-integration</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>defaults</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
@@ -260,8 +411,13 @@
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-help-plugin</artifactId>
+                        <version>${help.plugin.version}</version>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
-                        <version>${attach-resources.plugin.version}</version>
+                        <version>${source.plugin.version}</version>
                         <executions>
                             <execution>
                                 <id>attach-sources</id>
@@ -272,24 +428,13 @@
                             </execution>
                         </executions>
                     </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <profile>
-            <id>javadoc</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <build>
-                <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>${attach-resources.plugin.version}</version>
+                        <version>${javadoc.plugin.version}</version>
                         <executions>
                             <execution>
-                                <id>attach-javadocs</id>
+                                <id>attach-javadoc</id>
                                 <phase>install</phase>
                                 <goals>
                                     <goal>jar</goal>
@@ -297,46 +442,25 @@
                             </execution>
                         </executions>
                     </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <profile>
-            <id>jacoco</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <build>
-                <plugins>
                     <plugin>
-                        <groupId>org.jacoco</groupId>
-                        <artifactId>jacoco-maven-plugin</artifactId>
-                        <version>${jacoco.plugin.version}</version>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>${exec.plugin.version}</version>
                         <executions>
                             <execution>
-                                <id>default-instrument</id>
                                 <goals>
-                                    <goal>instrument</goal>
-                                </goals>
-                            </execution>
-                            <execution>
-                                <id>default-restore-instrumented-classes</id>
-                                <goals>
-                                    <goal>restore-instrumented-classes</goal>
-                                </goals>
-                            </execution>
-                            <execution>
-                                <id>default-report</id>
-                                <phase>prepare-package</phase>
-                                <goals>
-                                    <goal>report</goal>
+                                    <goal>java</goal>
                                 </goals>
                             </execution>
                         </executions>
+                        <configuration>
+                            <mainClass>${app.mainClass}</mainClass>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>
         </profile>
+
     </profiles>
 
 </project>
